@@ -1,9 +1,10 @@
-Name: libwbxml2
+Name:    libwbxml2
 Version: 0.10.8
 Release: 1
 Summary: Library to parse, encode and handle WBXML documents
-Group: System/Libraries
-License: LGPLv2.1
+Group:   System/Libraries
+License: LGPLv2+
+URL:     https://git.sailfishos.org/mer-core/libwbxml2
 Source0: %{name}-%{version}.tar.gz
 BuildRequires: expat-devel zlib-devel popt-devel
 BuildRequires: pkgconfig(libxml-2.0)
@@ -63,8 +64,6 @@ rm -rf build
 
 mv %{buildroot}%{_docdir}/* %{buildroot}%{_docdir}/%{name}-%{version}
 
-%clean
-rm -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
