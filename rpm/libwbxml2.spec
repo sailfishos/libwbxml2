@@ -6,15 +6,14 @@ Group:   System/Libraries
 License: LGPLv2+
 URL:     https://git.sailfishos.org/mer-core/libwbxml2
 Source0: %{name}-%{version}.tar.gz
-BuildRequires: expat-devel zlib-devel popt-devel
-BuildRequires: pkgconfig(libxml-2.0)
+BuildRequires: expat-devel
 BuildRequires: cmake
 
 %description
-The WBXML Library (aka libwbxml) contains a library and its associated
-tools to Parse, Encode and Handle WBXML documents.  The WBXML format
-is a binary representation of XML, defined by the Wap Forum, and used
-to reduce bandwidth in mobile communications.
+The WBXML Library (aka libwbxml) contains a library to Parse, Encode
+and Handle WBXML documents. The WBXML format is a binary
+representation of XML, defined by the Wap Forum, and used to reduce
+bandwidth in mobile communications.
 
 %package devel
 Summary: Development files for %{name}
@@ -31,6 +30,14 @@ Requires:  %{name} = %{version}-%{release}
 
 %description doc
 %{summary}.
+
+%package tools
+Summary:   Tools for %{name}
+Group:     Tools
+Requires:  %{name} = %{version}-%{release}
+
+%description tools
+%{summary}. Provides tools to Parse and Encode WBXML documents.
 
 %prep
 %setup -q -n %{name}-%{version}/upstream
@@ -55,7 +62,6 @@ mv %{buildroot}%{_docdir}/* %{buildroot}%{_docdir}/%{name}-%{version}
 %files
 %defattr(-,root,root,-)
 %license COPYING GNU-LGPL
-%{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
@@ -68,3 +74,7 @@ mv %{buildroot}%{_docdir}/* %{buildroot}%{_docdir}/%{name}-%{version}
 %files doc
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-%{version}
+
+%files tools
+%defattr(-,root,root,-)
+%{_bindir}/*
