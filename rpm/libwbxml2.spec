@@ -2,10 +2,10 @@ Name:    libwbxml2
 Version: 0.11.6
 Release: 1
 Summary: Library to parse, encode and handle WBXML documents
-Group:   System/Libraries
 License: LGPLv2+
 URL:     https://git.sailfishos.org/mer-core/libwbxml2
 Source0: %{name}-%{version}.tar.gz
+Patch0:  0001-Use-GNUInstallDirs.patch
 BuildRequires: expat-devel
 BuildRequires: cmake
 
@@ -17,7 +17,6 @@ bandwidth in mobile communications.
 
 %package devel
 Summary: Development files for %{name}
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -25,7 +24,6 @@ Requires: %{name} = %{version}-%{release}
 
 %package doc
 Summary:   Documentation for %{name}
-Group:     Documentation
 Requires:  %{name} = %{version}-%{release}
 
 %description doc
@@ -33,20 +31,19 @@ Requires:  %{name} = %{version}-%{release}
 
 %package tools
 Summary:   Tools for %{name}
-Group:     Tools
 Requires:  %{name} = %{version}-%{release}
 
 %description tools
 %{summary}. Provides tools to Parse and Encode WBXML documents.
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
+%autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DWBXML_INSTALL_FULL_HEADERS=ON ..
-make
+%cmake -DWBXML_INSTALL_FULL_HEADERS=ON ..
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
