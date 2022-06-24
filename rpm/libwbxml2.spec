@@ -3,7 +3,7 @@ Version: 0.11.6
 Release: 1
 Summary: Library to parse, encode and handle WBXML documents
 License: LGPLv2+
-URL:     https://git.sailfishos.org/mer-core/libwbxml2
+URL:     https://github.com/sailfishos/libwbxml2
 Source0: %{name}-%{version}.tar.gz
 Patch0:  0001-Use-GNUInstallDirs.patch
 BuildRequires: expat-devel
