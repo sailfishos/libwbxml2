@@ -1,5 +1,7 @@
+%undefine __cmake_in_source_build
+
 Name:    libwbxml2
-Version: 0.11.6
+Version: 0.11.10
 Release: 1
 Summary: Library to parse, encode and handle WBXML documents
 License: LGPLv2+
@@ -40,15 +42,11 @@ Requires:  %{name} = %{version}-%{release}
 %autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
-mkdir build
-cd build
-%cmake -DWBXML_INSTALL_FULL_HEADERS=ON ..
-make %{?_smp_mflags}
+%cmake -DWBXML_INSTALL_FULL_HEADERS=ON
+%cmake_build
 
 %install
-rm -rf %{buildroot}
-make -C build DESTDIR=%{buildroot} install
-rm -rf build
+%cmake_install
 
 mv %{buildroot}%{_docdir}/* %{buildroot}%{_docdir}/%{name}-%{version}
 
@@ -57,21 +55,17 @@ mv %{buildroot}%{_docdir}/* %{buildroot}%{_docdir}/%{name}-%{version}
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license COPYING GNU-LGPL
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-%{_datadir}/cmake/Modules/FindLibWbxml2.cmake
+%{_libdir}/cmake/*
 
 %files doc
-%defattr(-,root,root,-)
 %{_docdir}/%{name}-%{version}
 
 %files tools
-%defattr(-,root,root,-)
 %{_bindir}/*
