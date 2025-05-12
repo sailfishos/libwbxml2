@@ -1,4 +1,4 @@
-From 7a04c83f373a40079c0ca2f16ffe96921e2b9608 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Niels Breet <niels.breet@jolla.com>
 Date: Wed, 27 May 2020 17:23:00 +0300
 Subject: [PATCH] Use GNUInstallDirs
@@ -8,12 +8,12 @@ Subject: [PATCH] Use GNUInstallDirs
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index c2ce786..0471903 100644
+index 799f1a67ab0a82e21c17d8d40a996eb3f55a71b3..bb6e5f110775391b72a0851a4389096b63a47251 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -53,12 +53,14 @@ ENDIF( WBXML_INSTALL_FULL_HEADERS )
+@@ -52,12 +52,14 @@ IF( WBXML_INSTALL_FULL_HEADERS )
  
- CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+ ENDIF( WBXML_INSTALL_FULL_HEADERS )
  
 +include(GNUInstallDirs)
 +
@@ -28,6 +28,3 @@ index c2ce786..0471903 100644
  SET( BIN_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/bin" CACHE INTERNAL "binary location" )
  SET( SHARE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/share" CACHE INTERNAL "data location" )
  SET( INCLUDE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/include" CACHE INTERNAL "headers location" )
--- 
-1.9.1
-
